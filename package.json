@@ -1,0 +1,31 @@
+{
+  "name": "nutri-backend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": "git@github.com:williamsumida/nutri-backend.git",
+  "author": "William Sumida <william.h.sumida@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts | pino-pretty"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.13",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.17",
+    "@types/helmet": "^4.0.0",
+    "@types/pino": "^7.0.5",
+    "@types/pino-pretty": "^5.0.0",
+    "@types/uuid": "^9.0.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "helmet": "^6.0.1",
+    "pino": "^8.10.0",
+    "uuid": "^9.0.0"
+  }
+}
