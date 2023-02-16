@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-import express, { Response } from "express";
+import express, { Response, NextFunction } from "express";
 import { Request } from "./types";
 import { v4 as uuidv4 } from "uuid";
 import cors from "cors";
@@ -9,7 +9,7 @@ import helmet from "helmet";
 
 import logger from "./logger";
 
-function requestIdMiddleware(request: Request, response: Response, next: any) {
+function requestIdMiddleware(request: Request, response: Response, next: NextFunction) {
   request.id = uuidv4();
   next();
 }
