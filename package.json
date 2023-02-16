@@ -1,0 +1,14 @@
+{
+  "name": "nutri-backend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": "git@github.com:williamsumida/nutri-backend.git",
+  "author": "William Sumida <william.h.sumida@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^4.9.5"
+  }
+}
