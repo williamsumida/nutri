@@ -1,7 +1,10 @@
 import { Router } from "express";
-import { menuRoutes } from "./menu.routes";
+import { mealRoutes } from "./meal.routes";
+import { foodRoutes } from "./food.routes";
+
 const routes = Router();
 
-routes.use(menuRoutes);
+routes.use(mealRoutes);
+routes.use(foodRoutes);
 
 export { routes };

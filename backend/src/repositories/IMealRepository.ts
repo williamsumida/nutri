@@ -1,7 +1,7 @@
 import { Meal } from "../entities/Meal";
 
-export interface IMealInterface {
+export interface IMealRepository {
   create(): Promise<void>;
   get(): Promise<Meal>;
-  save(): Promise<void>;
+  save(meal: Meal): Promise<void>;
 }
