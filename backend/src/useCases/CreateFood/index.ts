@@ -1,4 +1,4 @@
-import { PosgresFoodRepository, PostgresFoodRepository } from "../../repositories/implementations/PostgresFoodRepository";
+import { PostgresFoodRepository } from "../../repositories/implementations/PostgresFoodRepository";
 import { CreateFoodUseCase } from "./CreateFoodUseCase";
 import { CreateFoodController } from "./CreateFoodController";
 
