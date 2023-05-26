@@ -17,6 +17,7 @@ export class CreateFoodController {
       await this.createFoodUseCase.execute({ name, calories, weight, unit, });
       return response.status(201).json({ message: "Food created successfully." });
     } catch (err) {
+      logger.error(err);
       return response.status(400).json({ message: err.message || "Unexpected error" });
     }
   }
