@@ -1,4 +1,5 @@
-import { uuid } from "uuidv4";
+import { v4 } from "uuid";
+
 export class Food {
   public readonly id: string;
 
@@ -8,11 +9,22 @@ export class Food {
   public weight: number;
   public unit: string;
 
-  constructor(props: Omit<Food, 'id'>, id?: string) {
-    Object.assign(this, props);
+  constructor(name: string, calories: number, weight: number, unit: string, caloriesPerUnit?: number, id?: string) {
+    this.name = name;
+    this.calories = calories;
+    this.weight = weight;
+    this.unit = unit;
+
+    if (!caloriesPerUnit) {
+      this.caloriesPerUnit = this.calculateCaloriesPerUnit();
+    }
 
     if (!id) {
-      this.id = uuid();
+      this.id = v4();
     }
+  }
+
+  calculateCaloriesPerUnit(): number {
+    return this.calories / this.weight;
   }
 }
