@@ -5,11 +5,11 @@ import { GetFoodsUseCase } from "./GetFoodsUseCase";
 import logger from "../../logger";
 
 export class GetFoodsController {
-  constructor(private getFoodUseCase: GetFoodsUseCase) { }
+  constructor(private getFoodsUseCase: GetFoodsUseCase) { }
 
   async handle(request: Request, response: Response): Promise<Response> {
     try {
-      const foods = await this.getFoodUseCase.execute();
+      const foods = await this.getFoodsUseCase.execute();
       logger.info({ foods });
       return response.status(200).json({ foods });
     } catch (err) {

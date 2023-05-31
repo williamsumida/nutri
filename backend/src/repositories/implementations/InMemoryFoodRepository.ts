@@ -11,6 +11,10 @@ export class InMemoryFoodRepository implements IFoodRepository {
     return food;
   }
 
+  async findById(id: string): Promise<Food> {
+    return foods.find(food => food.id === id);
+  }
+
   async findAll(): Promise<Food[]> {
     logger.info(foods);
     return foods;
