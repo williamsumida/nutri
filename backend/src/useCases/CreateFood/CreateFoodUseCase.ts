@@ -11,6 +11,6 @@ export class CreateFoodUseCase {
     const { name, calories, weight, unit } = data;
     const food = new Food(name, calories, weight, unit);
     logger.info(food);
-    await this.foodRepository.save(food);
+    return await this.foodRepository.save(food);
   }
 }
