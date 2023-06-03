@@ -1,17 +1,7 @@
-import { IFoodRepository } from "../IFoodRepository";
-import { Food } from "../../entities/Food";
-import logger from "../../logger";
+import { describe, test, expect } from "vitest";
 
-export class InMemoryFoodRepository implements IFoodRepository {
-  private foods: Food[] = [];
+describe("Creating Food", () => {
+  it("should be able to create a food object", () => {
 
-  async save(food: Food): Promise<Food> {
-    logger.info(food);
-    this.foods.push(food);
-    return food;
-  }
-
-  async findAll(): Promise<Food[]> {
-    return this.foods;
-  }
-}
+  });
+})

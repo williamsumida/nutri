@@ -1,9 +1,3 @@
-import { IMealRepository } from "../../repositories/IMealRepository";
+import { describe, it, expect } from "vitest";
 
-export class CreateMealUseCase {
-  constructor(private mealRepository: IMealRepository) { }
-
-  async execute() {
-    this.mealRepository.create();
-  }
-}
+it("")
