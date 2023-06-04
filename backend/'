@@ -1,7 +1,7 @@
 import { v4 } from "uuid";
 
 export class Food {
-  public readonly id: string;
+  public id: string;
 
   public name: string;
   public calories: number;
@@ -10,12 +10,12 @@ export class Food {
   public unit: string;
 
   constructor(name: string, calories: number, weight: number, unit: string, caloriesPerUnit?: number, id?: string) {
-    this.id = id;
     this.name = name;
     this.calories = calories;
-    this.caloriesPerUnit = caloriesPerUnit;
     this.weight = weight;
     this.unit = unit;
+    this.id = id;
+    this.caloriesPerUnit = caloriesPerUnit;
 
     if (!caloriesPerUnit) {
       this.caloriesPerUnit = this.calculateCaloriesPerUnit();

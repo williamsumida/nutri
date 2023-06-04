@@ -3,8 +3,7 @@ import { InMemoryFoodRepository } from "../../repositories/implementations/InMem
 import { CreateFoodUseCase } from "./CreateFoodUseCase";
 import { CreateFoodController } from "./CreateFoodController";
 
-const inMemoryFoodRepository = new InMemoryFoodRepository();
 const postgresFoodRepository = new PostgresFoodRepository();
-const createFoodUseCase = new CreateFoodUseCase(inMemoryFoodRepository);
+const createFoodUseCase = new CreateFoodUseCase(postgresFoodRepository);
 const createFoodController = new CreateFoodController(createFoodUseCase);
 export { createFoodUseCase, createFoodController };

@@ -7,10 +7,14 @@ export class CreateFoodUseCase {
 
   constructor(private foodRepository: IFoodRepository) { }
 
-  async execute(data: ICreateFoodDTO) {
+  async execute(data: ICreateFoodDTO): Promise<Food> {
+    logger.info({ message: "Creating Food", data });
+
     const { name, calories, weight, unit } = data;
     const food = new Food(name, calories, weight, unit);
-    logger.info(food);
-    return await this.foodRepository.save(food);
+    const createdFood = await this.foodRepository.save(food);
+
+    logger.info({ message: "Created Food", createdFood });
+    return createdFood;
   }
 }
