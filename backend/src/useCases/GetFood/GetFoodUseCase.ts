@@ -1,5 +1,6 @@
 import { IFoodRepository } from "../../repositories/IFoodRepository";
 import { IGetFoodDTO } from "./GetFoodDTO";
+import logger from "../../logger";
 
 export class GetFoodUseCase {
   constructor(
@@ -8,6 +9,9 @@ export class GetFoodUseCase {
 
   async execute(data: IGetFoodDTO) {
     const { id } = data;
-    return await this.foodRepository.findById(id);
+    logger.info({ message: "Fetching food", foodId: id });
+    const food = await this.foodRepository.findById(id);
+    logger.info({ message: "Food", food });
+    return food;
   }
 }

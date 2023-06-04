@@ -10,8 +10,10 @@ export class Food {
   public unit: string;
 
   constructor(name: string, calories: number, weight: number, unit: string, caloriesPerUnit?: number, id?: string) {
+    this.id = id;
     this.name = name;
     this.calories = calories;
+    this.caloriesPerUnit = caloriesPerUnit;
     this.weight = weight;
     this.unit = unit;
 

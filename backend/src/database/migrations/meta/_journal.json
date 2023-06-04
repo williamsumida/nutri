@@ -1,0 +1,27 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1685910691357,
+      "tag": "0000_dusty_kree",
+      "breakpoints": false
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1685913671282,
+      "tag": "0001_moaning_lady_mastermind",
+      "breakpoints": false
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1685913875284,
+      "tag": "0002_little_grim_reaper",
+      "breakpoints": false
+    }
+  ]
+}
