@@ -1,6 +1,9 @@
 import dotenv from "dotenv";
 dotenv.config();
 
+import "./database/migration";
+import "./database/postgres";
+
 import express, { Response, NextFunction } from "express";
 import { Request } from "./types";
 import { v4 as uuidv4 } from "uuid";

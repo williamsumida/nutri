@@ -8,7 +8,8 @@
   "scripts": {
     "build": "tsc",
     "test": "vitest",
-    "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts | pino-pretty"
+    "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts | pino-pretty",
+    "generate": "drizzle-kit generate:pg"
   },
   "devDependencies": {
     "@types/cors": "^2.8.13",
