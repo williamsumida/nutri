@@ -15,6 +15,7 @@ export class Food {
     this.calories = calories;
     this.caloriesPerUnit = caloriesPerUnit;
     this.weight = weight;
+    // TODO: save in ml and g only
     this.unit = unit;
 
     if (!caloriesPerUnit) {
