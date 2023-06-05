@@ -1,5 +1,0 @@
-export function convertToGrams(weight: number, unit: string): number {
-  if (unit.toLowerCase() === "kg") {
-    return weight * 1000;
-  }
-}

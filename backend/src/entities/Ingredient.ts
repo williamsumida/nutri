@@ -19,7 +19,7 @@ export class Ingredient {
   public food: Food;
 
   constructor(
-    name: string, amount: number, amountUnit: string, food: Food, calories: number, id?: string
+    name: string, amount: number, amountUnit: string, food: Food, calories?: number, id?: string
   ) {
     this.name = name;
     this.amount = amount;
