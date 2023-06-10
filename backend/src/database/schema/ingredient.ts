@@ -6,6 +6,7 @@ export const ingredient = pgTable('ingredient', {
   name: text('name'),
   amount: numeric('amount'),
   amountUnit: text("amount_unit"),
+  calories: numeric("calories"),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
   foodId: text("food_id").references(() => food.id)
