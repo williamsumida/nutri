@@ -6,11 +6,12 @@ import "./database/postgres";
 
 import { AppError } from "./errors/AppError";
 import express, { Response, NextFunction } from "express";
+import "express-async-errors";
 import { Request } from "./types";
 import { v4 as uuidv4 } from "uuid";
 import cors from "cors";
 import helmet from "helmet";
-
+import { ZodError } from "zod";
 import logger from "./logger";
 import { routes } from "./routes";
 
@@ -19,11 +20,22 @@ function requestIdMiddleware(request: Request, response: Response, next: NextFun
   next();
 }
 
-function errorMiddleware(err: Error, request: Request, response: Response, next: NextFunction) {
+function errorMiddleware(err: Error, _request: Request, response: Response, _next: NextFunction) {
   if (err instanceof AppError) {
-    return response.status(err.statusCode).json({
-      message: err.message
-    });
+    return response
+      .status(err.statusCode)
+      .json({
+        message: err.message
+      });
+  }
+
+  if (err instanceof ZodError) {
+    return response
+      .status(400)
+      .json({
+        message: "Validation error",
+        issues: err.format()
+      });
   }
 
   return response.status(500).json({
