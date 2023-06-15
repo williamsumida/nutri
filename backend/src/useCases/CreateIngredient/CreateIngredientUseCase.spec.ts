@@ -44,13 +44,13 @@ describe("Ingredient object creation", () => {
   test("expect error when sending different units", () => {
   });
 
-  test("", () => {
+  test("Successfully create and save ingredient", () => {
   });
 
-  test("", () => {
+  test("Validate ingredient parameters", () => {
   });
 
-  test("", () => {
+  test("Should throw an error when receiving invalid parameters", () => {
   });
 
   test("", () => {
