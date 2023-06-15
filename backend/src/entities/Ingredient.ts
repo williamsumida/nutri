@@ -1,12 +1,18 @@
 import { Food } from "./Food";
 import { v4 } from "uuid";
 import { convertToGrams, convertToMililiters } from "../util/conversions";
+import { AppError } from "../errors/AppError";
 
 enum AmountValidationAction {
   None,
   ConvertToGrams,
   ConvertToMililiters,
   Invalid
+}
+
+interface ConvertedAmount {
+  convertedAmount: number;
+  convertedAmountUnit: string;
 }
 
 export class Ingredient {
@@ -28,18 +34,10 @@ export class Ingredient {
     this.calories = calories;
     this.id = id;
 
-    const amountUnitAction = this.validateAmountUnit(this.amountUnit);
 
-    // Refatorar
-    if (amountUnitAction === AmountValidationAction.ConvertToGrams) {
-      this.amount = convertToGrams(this.amount, this.amountUnit);
-      this.amountUnit = "g";
-    }
-
-    if (amountUnitAction === AmountValidationAction.ConvertToMililiters) {
-      this.amount = convertToMililiters(this.amount, this.amountUnit);
-      this.amountUnit = "ml";
-    }
+    const { convertedAmount, convertedAmountUnit } = this.convertAmount(this.amount, this.amountUnit);
+    this.amount = convertedAmount;
+    this.amountUnit = convertedAmountUnit;
 
     if (!calories) {
       this.calories = this.calculateCalories(this.amount, this.food);
@@ -50,24 +48,30 @@ export class Ingredient {
     }
   }
 
+  convertAmount(amount: number, amountUnit: string): ConvertedAmount {
+    let convertedAmount = 0;
+    let convertedAmountUnit = "";
+
+    switch (amountUnit) {
+      case "g" || "ml":
+        convertedAmount = amount;
+        convertedAmountUnit = amountUnit;
+        break;
+      case "kg":
+        convertedAmount = convertToGrams(amount, amountUnit);
+        convertedAmountUnit = "g";
+        break;
+      case "l":
+        convertedAmount = convertToMililiters(amount, amountUnit);
+        convertedAmountUnit = "ml";
+      default:
+        throw new AppError("Invalid unit");
+    }
+
+    return { convertedAmount, convertedAmountUnit };
+  }
+
   calculateCalories(amount: number, food: Food): number {
     return amount * food.caloriesPerUnit;
   }
-
-  validateAmountUnit(amountUnit: string): AmountValidationAction {
-    switch (amountUnit) {
-      case "g" || "ml":
-        return AmountValidationAction.None;
-
-      case "kg":
-        return AmountValidationAction.ConvertToGrams;
-
-      case "l":
-        return AmountValidationAction.ConvertToMililiters;
-
-      default:
-        return AmountValidationAction.Invalid;
-    }
-  }
-
 }
