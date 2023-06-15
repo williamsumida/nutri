@@ -19,24 +19,40 @@ export class PostgresIngredientRepository implements IIngredientRepository {
 
   async findById(id: string): Promise<Ingredient> {
     const result = await db`
-      SELECT *
-      FROM ingredient
-      WHERE id = ${id};
+      SELECT 
+        i.id AS ingredientId,
+        i.name AS ingredientName,
+        i.amount AS ingredientAmount,
+        i.amountUnit AS ingredientAmountUnit,
+        i.calories AS ingredientCalories,
+        f.id AS foodId, 
+        f.name AS foodName, 
+        f.calories AS foodCalories, 
+        f.calories_per_unit AS foodCaloriesPerUnit,
+        f.weight AS foodWeight,
+        f.unit AS foodUnit
+      FROM ingredient AS i
+      INNER JOIN food AS f
+        ON i.food_id = f.id
+      WHERE i.id = ${id};
     `;
-    const { name, amount, amountUnit, calories, food_id } = result[0];
 
-    const foodResult = db`SELECT * FROM food WHERE id = ${food_id}`;
+    const {
+      ingredientId,
+      ingredientName,
+      ingredientAmount,
+      ingredientAmountUnit,
+      ingredientCalories,
+      foodId,
+      foodName,
+      foodCalories,
+      foodCaloriesPerUnit,
+      foodWeight,
+      foodUnit
+    } = result[0];
 
-    const food = new Food(
-      foodResult[0].name,
-      foodResult[0].calories,
-      foodResult[0].weight,
-      foodResult[0].unit,
-      foodResult[0].calories_per_unit,
-      foodResult[0].id,
-
-    );
-    return new Ingredient(name, amount, amountUnit, food, calories, id);
+    const food = new Food(foodName, foodCalories, foodWeight, foodUnit, foodCaloriesPerUnit, foodId);
+    return new Ingredient(ingredientName, ingredientAmount, ingredientAmountUnit, food, ingredientCalories, ingredientId);
   }
 
   async findByName(name: string): Promise<Ingredient> {
