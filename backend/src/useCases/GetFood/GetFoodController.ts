@@ -23,8 +23,4 @@ export class GetFoodController {
     }
 
   }
-
-  isParametersValid(id: string | null) {
-    return typeof id === "string" ? true : false;
-  }
 }
